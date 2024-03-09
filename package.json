@@ -8,12 +8,15 @@
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"postbuild": "npx svelte-sitemap --domain https://myawesomedomain.com" 
+		"postbuild": "npx svelte-sitemap --domain https://myawesomedomain.com"
 	},
 	"devDependencies": {
+		"@skeletonlabs/skeleton": "^2.9.0",
+		"@skeletonlabs/tw-plugin": "^0.3.1",
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
+		"@types/node": "^20.11.25",
 		"autoprefixer": "^10.4.18",
 		"mdsvex": "^0.11.0",
 		"postcss": "^8.4.35",

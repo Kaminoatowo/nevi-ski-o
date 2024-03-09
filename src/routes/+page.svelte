@@ -1,2 +1,4 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<section class="flex flex-col items-center">
+    <h1>Ghe n'è de nef?</h1>
+    <p>Scopri se c'è neve sulle piste!</p>
+</section>
