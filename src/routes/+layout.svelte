@@ -64,7 +64,9 @@
                     </svelte:fragment>
                 </AppRail>
             </svelte:fragment>
-            (title)
+            <p class="pl-1 text-xl font-bold md:pl-2 md:text-2xl">
+                Nevi<span class="gradient-heading">Ski</span>o
+            </p>
             <svelte:fragment slot="trail">
                 <LightSwitch />
                 <AppRail>
@@ -89,5 +91,4 @@
     </section>
     </svelte:fragment>
 </AppShell>
-
 
