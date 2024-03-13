@@ -1,4 +1,6 @@
 <script lang="ts">
+    export let height = 'h-screen'
+    export let zIndex = '-z-10'
     import { onMount } from 'svelte'
   
     // a bunch of variables defining the snow and how it falls
@@ -94,7 +96,7 @@
     }
   </style>
   
-  <div class="snowframe" aria-hidden="true">
+  <div class="snowframe {height} {zIndex}" aria-hidden="true">
     {#each snowflakes as flake}
       <div
         class="snowflake"

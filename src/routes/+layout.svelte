@@ -10,13 +10,26 @@
         getDrawerStore,
         type DrawerSettings, 
         type DrawerStore,
-        initializeStores
+        initializeStores,
+
+        type PopupSettings,
+
+        popup
+
+
     } from '@skeletonlabs/skeleton';
-    import { LightSwitch } from '@skeletonlabs/skeleton';
+    //import { LightSwitch } from '@skeletonlabs/skeleton';
+    import {    
+        MenuBurgerIcon,
+        UserIcon
+     } from 'svelte-uicons/rounded/regular';
     import type { AfterNavigate } from '@sveltejs/kit';
     import { afterNavigate } from '$app/navigation';
     import { page } from '$app/stores';
-
+    import SideNavbar from '$lib/components/SideNavbar.svelte';
+    import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floating-ui/dom';
+    import { storePopup } from '@skeletonlabs/skeleton';
+    		
     // to scroll back to top when navigating to a new page
     afterNavigate((params: AfterNavigate) => {
         const isNewPage = params.from?.url.pathname !== params.to?.url.pathname;
@@ -35,16 +48,19 @@
     function drawerOpen(): void {
 		drawerStore.open(settings);
 	}
+
+    storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
+        
+    const popupClick: PopupSettings = {
+        event: 'click',
+        target: 'popupClick',
+        placement: 'top'
+    };
+                        
 </script>
 
 <Drawer>
-    {#if $drawerStore.id === 'example-1'}
-		<!-- (show 'example-1' contents) -->
-	{:else if $drawerStore.id === 'example-2'}
-		<!-- (show 'example-2' contents) -->
-	{:else}
-		<!-- (fallback contents) -->
-	{/if}
+    <SideNavbar />
 </Drawer>
 
 <AppShell regionPage="relative" slotPageHeader="sticky top-0 z-10">
@@ -54,39 +70,44 @@
                 <button
                     class="p-2"
                     aria-label="Open drawer"
-                    on:click={drawerOpen}>Menu</button>
+                    on:click={drawerOpen}>
+                    <MenuBurgerIcon size="1.5x" />
+                </button>
                 <AppRail>
                     <svelte:fragment slot="lead">
                         <AppRailAnchor href="/">
-                            <svelte:fragment slot="lead">(home)</svelte:fragment>
-                            <span>Home</span>
+                            <svelte:fragment slot="lead">
+                                <img src="src/public/Logo_neviskio.png" alt="NeviSki-o" class="w-16" />
+                            </svelte:fragment>
                         </AppRailAnchor>
                     </svelte:fragment>
                 </AppRail>
             </svelte:fragment>
-            <p class="pl-1 text-xl font-bold md:pl-2 md:text-2xl">
+            <a href="/" class="pl-1 text-xl font-bold md:pl-2 md:text-2xl">
                 Nevi<span class="gradient-heading">Ski</span>o
-            </p>
+            </a>
             <svelte:fragment slot="trail">
-                <LightSwitch />
-                <AppRail>
-                    <svelte:fragment slot="lead">
-                        <AppRailTile group={currentTile} name="tile-user" value={4}>
-                            <svelte:fragment slot="lead">(user)</svelte:fragment>
-                            <span>User</span>
-                        </AppRailTile>
-                    </svelte:fragment>
-                </AppRail>
+                <button use:popup={popupClick}>
+                    <UserIcon size="1.5x" />
+                </button>                
+                <div class="card p-4 variant-filled-primary" data-popup="popupClick">
+                    <p>(login)</p>
+                    <p>(signin)</p>
+                </div>           
             </svelte:fragment>
         </AppBar>
 	</svelte:fragment>
     <slot />
     <svelte:fragment slot="pageFooter">
-        <section class="flex flex-col items-center">
-            <p>NeviSki-o</p>
+        <section class="m-5 flex flex-col items-center">
+            <img src="src/public/Logo_neviskio.png" alt="NeviSki-o" class="w-16 -m-2" />
+            <p class="m-2">NeviSki-o</p>
+            <span class="variant-soft badge">
+                0.0.1
+            </span>
         </section>    
-    <hr class="opacity-20" />    
-    <section class="flex flex-col items-center">
+    <hr class="m-2 opacity-20" />    
+    <section class="m-5 flex flex-col items-center">
         <p>© 2024 OGD design 🦡</p>
     </section>
     </svelte:fragment>
