@@ -11,12 +11,8 @@
         type DrawerSettings, 
         type DrawerStore,
         initializeStores,
-
         type PopupSettings,
-
         popup
-
-
     } from '@skeletonlabs/skeleton';
     //import { LightSwitch } from '@skeletonlabs/skeleton';
     import {    
@@ -27,7 +23,10 @@
     import { afterNavigate } from '$app/navigation';
     import { page } from '$app/stores';
     import SideNavbar from '$lib/components/SideNavbar.svelte';
-    import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floating-ui/dom';
+    import { 
+        computePosition, autoUpdate, offset, 
+        shift, flip, arrow 
+    } from '@floating-ui/dom';
     import { storePopup } from '@skeletonlabs/skeleton';
     		
     // to scroll back to top when navigating to a new page
@@ -48,19 +47,22 @@
     function drawerOpen(): void {
 		drawerStore.open(settings);
 	}
+    const drawerClose = (): void => {
+        drawerStore.close();
+    };
 
     storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
         
     const popupClick: PopupSettings = {
         event: 'click',
         target: 'popupClick',
-        placement: 'top'
+        placement: 'left',
     };
                         
 </script>
 
 <Drawer>
-    <SideNavbar />
+    <SideNavbar {drawerClose} />
 </Drawer>
 
 <AppShell regionPage="relative" slotPageHeader="sticky top-0 z-10">
@@ -73,15 +75,9 @@
                     on:click={drawerOpen}>
                     <MenuBurgerIcon size="1.5x" />
                 </button>
-                <AppRail>
-                    <svelte:fragment slot="lead">
-                        <AppRailAnchor href="/">
-                            <svelte:fragment slot="lead">
-                                <img src="src/public/Logo_neviskio.png" alt="NeviSki-o" class="w-16" />
-                            </svelte:fragment>
-                        </AppRailAnchor>
-                    </svelte:fragment>
-                </AppRail>
+                <a href="/">
+                    <img src="src/public/Logo_neviskio.png" alt="NeviSki-o" class="w-16" />
+                </a>
             </svelte:fragment>
             <a href="/" class="pl-1 text-xl font-bold md:pl-2 md:text-2xl">
                 Nevi<span class="gradient-heading">Ski</span>o
@@ -91,8 +87,12 @@
                     <UserIcon size="1.5x" />
                 </button>                
                 <div class="card p-4 variant-filled-primary" data-popup="popupClick">
-                    <p>(login)</p>
-                    <p>(signin)</p>
+                    <a href="/login">
+                        <p>(login)</p>
+                    </a>
+                    <a href="/signup">
+                        <p>(signup)</p>
+                    </a>
                 </div>           
             </svelte:fragment>
         </AppBar>
