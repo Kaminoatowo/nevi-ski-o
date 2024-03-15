@@ -28,7 +28,14 @@
         shift, flip, arrow 
     } from '@floating-ui/dom';
     import { storePopup } from '@skeletonlabs/skeleton';
-    		
+    import { onMount } from 'svelte';
+    import { session } from '$lib/session';
+    import { goto } from '$app/navigation';
+    import { signOut } from 'firebase/auth';
+    import { auth } from '$lib/firebase.client';
+    import type { LayoutData } from './$types';
+    export let data: LayoutData;
+
     // to scroll back to top when navigating to a new page
     afterNavigate((params: AfterNavigate) => {
         const isNewPage = params.from?.url.pathname !== params.to?.url.pathname;
@@ -58,6 +65,34 @@
         target: 'popupClick',
         placement: 'left',
     };
+
+    // to manage db session
+    let loading: boolean = true;
+    let loggedIn: boolean = false;
+
+    session.subscribe((cur: any) => {
+    loading = cur?.loading;
+    loggedIn = cur?.loggedIn;
+
+    onMount(async () => {
+    const user: any = await data.getAuthUser();
+
+    const loggedIn = !!user && user?.emailVerified;
+    session.update((cur: any) => {
+    loading = false;
+    return {
+        ...cur,
+        user,
+        loggedIn,
+        loading: false
+    };
+    });
+
+    if (loggedIn) {
+    goto('/');
+    }
+    });
+ });
                         
 </script>
 
@@ -97,7 +132,14 @@
             </svelte:fragment>
         </AppBar>
 	</svelte:fragment>
-    <slot />
+    {#if loading}
+        <div>Loading...</div>
+    {:else}
+        <div>
+            Logged in: {loggedIn}
+            <slot />
+        </div>
+    {/if}
     <svelte:fragment slot="pageFooter">
         <section class="m-5 flex flex-col items-center">
             <img src="src/public/Logo_neviskio.png" alt="NeviSki-o" class="w-16 -m-2" />
