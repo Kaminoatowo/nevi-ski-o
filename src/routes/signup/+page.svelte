@@ -29,10 +29,37 @@
 </script>
 
 <div class="register-form">
-    <form on:submit={handleRegister}>
-     <h2>Register</h2>
-     <input bind:value={email} type="text" placeholder="Email" />
-     <input bind:value={password} type="password" placeholder="Password" />
-     <button type="submit">Register</button>
-    </form>
+    <h2 class="m-2">Registrati</h2>
+    <div class="flex justify-center mb-4">
+        <form on:submit={handleRegister}>
+            <label for="email" >Email</label>
+            <input bind:value={email} type="text" placeholder="Email" />
+            <label for="password" >Password</label>
+            <input bind:value={password} type="password" placeholder="Password" />
+            <button type="submit">Registrami</button>
+        </form>
+    </div>
 </div>
+
+
+<style lang="postcss">
+form {
+    @apply w-60 m-0 p-5 rounded-lg bg-surface-500 
+}
+
+input {
+    @apply w-full p-2 rounded-sm my-2 text-black
+}
+
+button {
+    @apply block w-full bg-success-500 rounded-sm cursor-pointer
+}
+
+div button {
+    @apply block bg-success-500 rounded-sm cursor-pointer
+}
+
+.register-form {
+    @apply flex flex-col items-center justify-center gap-4 w-1/2 mx-auto rounded-lg bg-secondary-500/10 
+}
+</style>

@@ -79,7 +79,6 @@
 </div>
 
 <style lang="postcss">
-
 form {
     @apply w-60 m-0 p-5 rounded-lg bg-surface-500 
 }
