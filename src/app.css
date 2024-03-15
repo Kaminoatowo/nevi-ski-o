@@ -13,3 +13,10 @@ body { @apply bg-surface-50-900-token; }
 	/* Color Stops */
 	@apply from-primary-500 via-tertiary-500 to-secondary-500;
 }
+
+h1 {
+	@apply text-2xl;
+}
+h2 {
+	@apply text-xl;
+}

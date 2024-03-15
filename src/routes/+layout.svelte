@@ -121,12 +121,12 @@
                 <button use:popup={popupClick}>
                     <UserIcon size="1.5x" />
                 </button>                
-                <div class="card p-4 variant-filled-primary" data-popup="popupClick">
+                <div class="card p-4 mt-2 mr-0 variant-filled-primary" data-popup="popupClick">
                     <a href="/login">
-                        <p>(login)</p>
+                        <p>Accedi</p>
                     </a>
                     <a href="/signup">
-                        <p>(signup)</p>
+                        <p>Registrati</p>
                     </a>
                 </div>           
             </svelte:fragment>
