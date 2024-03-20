@@ -1,0 +1,6 @@
+.login-form{
+    @apply bg-surface-200 w-1/2 mx-auto text-primary-900 rounded-lg;
+}
+.styled-button {
+    @apply rounded-md bg-success-500 w-full my-2
+}
