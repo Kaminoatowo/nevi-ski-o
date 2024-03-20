@@ -9,22 +9,22 @@
     let password: string = '';
    
     async function handleRegister() {
-     await createUserWithEmailAndPassword(auth, email, password)
-      .then((result) => {
-       const { user } = result;
-       session.update((cur: any) => {
-        return {
-         ...cur,
-         user,
-         loggedIn: true,
-         loading: false
-        };
-       });
-       goto('/');
-      })
-      .catch((error) => {
-       throw new Error(error);
-      });
+        await createUserWithEmailAndPassword(auth, email, password)
+            .then((result) => {
+                const { user } = result;
+                session.update((cur: any) => {
+                    return {
+                        ...cur,
+                        user,
+                        loggedIn: true,
+                        loading: false
+                        };
+                    });
+                    goto('/');
+                })
+                .catch((error) => {
+                    throw new Error(error);
+                });
     }
 </script>
 

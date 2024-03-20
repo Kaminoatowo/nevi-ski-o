@@ -71,28 +71,39 @@
     let loggedIn: boolean = false;
 
     session.subscribe((cur: any) => {
-    loading = cur?.loading;
-    loggedIn = cur?.loggedIn;
+        loading = cur?.loading;
+        loggedIn = cur?.loggedIn;
+    })
 
     onMount(async () => {
-    const user: any = await data.getAuthUser();
+        const user: any = await data.getAuthUser();
 
-    const loggedIn = !!user && user?.emailVerified;
-    session.update((cur: any) => {
-    loading = false;
-    return {
-        ...cur,
-        user,
-        loggedIn,
-        loading: false
-    };
+        const loggedIn = !!user && user?.emailVerified;
+        session.update((cur: any) => {
+            loading = false;
+            return {
+                ...cur,
+                user,
+                loggedIn,
+                loading: false
+            };
+        });
+
+        if (loggedIn) {
+            goto('/');
+        }
     });
 
-    if (loggedIn) {
-    goto('/');
-    }
-    });
- });
+    export function logout() {
+		signOut(auth)
+			.then(() => {
+				goto('/login');
+				loggedIn = false;
+			})
+			.catch((error) => {
+				throw new Error(error);
+			});
+	}
                         
 </script>
 
@@ -125,7 +136,7 @@
                     <a href="/login">
                         <p>Accedi</p>
                     </a>
-                    <a href="/signup">
+                    <a href="/register">
                         <p>Registrati</p>
                     </a>
                 </div>           
@@ -137,6 +148,13 @@
     {:else}
         <div>
             Logged in: {loggedIn}
+            <div>
+                {#if loggedIn}
+                    <button on:click={logout}>Logout</button>
+                {:else}
+                    <a href="/login"> Login</a>
+                {/if}
+            </div>
             <slot />
         </div>
     {/if}
