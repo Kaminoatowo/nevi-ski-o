@@ -1,4 +1,5 @@
 <script>
+    import Autenticate from '$lib/components/Autenticate.svelte';
     import AnimationFrameSnow from '../lib/components/AnimationFrameSnow.svelte';
 </script>
 
@@ -12,4 +13,4 @@
     <p class="italic">Ah, dimenticavo: è tutto gratis!</p>
 </section>
 
-<AnimationFrameSnow height=''/>
+<!--AnimationFrameSnow height=''/-->
