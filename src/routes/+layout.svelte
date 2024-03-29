@@ -112,17 +112,17 @@
                 <div class="card p-4 variant-filled-primary" data-popup="popupClick">
                     {#if currentUser}
                     <a href="/settings">
-                        <p>(settings)</p>
+                        <p>Impostazioni</p>
                     </a>
                     <a href="/logout">
-                        <p>(logout)</p>
+                        <p>Esci</p>
                     </a>
                     {:else}
                     <a href="/login">
-                        <p>(login)</p>
+                        <p>Accedi</p>
                     </a>
                     <a href="/signup">
-                        <p>(signup)</p>
+                        <p>Registrati</p>
                     </a>
                     {/if}
                 </div>           
