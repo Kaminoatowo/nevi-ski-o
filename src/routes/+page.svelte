@@ -13,4 +13,4 @@
     <p class="italic">Ah, dimenticavo: è tutto gratis!</p>
 </section>
 
-<!--AnimationFrameSnow height=''/-->
+<AnimationFrameSnow height=''/>
