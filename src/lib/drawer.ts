@@ -15,4 +15,4 @@ const drawerClose = (): void => {
     drawerStore.close();
 };
 
-export { drawerOpen, drawerClose, drawerStore, settings};
+export { drawerOpen, drawerClose, drawerStore, settings };
