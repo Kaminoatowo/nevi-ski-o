@@ -1,5 +1,4 @@
 <script>
-    import Autenticate from '$lib/components/Autenticate.svelte';
     import AnimationFrameSnow from '../lib/components/AnimationFrameSnow.svelte';
 </script>
 
