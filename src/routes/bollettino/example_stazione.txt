@@ -1,0 +1,16 @@
+<datiOggi xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.meteotrentino.it/">
+    <data>2024/03/30</data>
+    <tmin>0.3</tmin>
+    <tmax>5.5</tmax>
+    <rain>0</rain>
+    <temperature>
+        <temperatura_aria UM="°C">
+            <data>2024-03-29T00:00:00</data>
+            <temperatura>0</temperatura>
+        </temperatura_aria>
+    </temperature>
+    <precipitazioni/>
+    <venti/>
+    <radiazione/>
+    <umidita_relativa/>
+</datiOggi>
