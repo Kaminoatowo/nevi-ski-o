@@ -6,11 +6,15 @@ function getFetchUrl(key: string) {
     return 'https://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=' + key;
 }
 
+function getFetchUrlNeve() {
+    return 'https://dati.meteotrentino.it/service.asmx/tuttiUltimiRilieviNeve';
+}
+
 export const rilieviStore = writable<{ dati: any }>({
     dati: null
 });
 
-async function getSnowInfo() {
+/*async function getSnowInfo() {
     const res = await fetch(getFetchUrl(codiceStazione));
     if (res.status === 404) {
         alert('Invalid City Name.');
@@ -24,4 +28,4 @@ export const getRilievi = async () => {
     const res = await fetch(getFetchUrl(codiceStazione));
     const data = await res.json();
     rilieviStore.set({ dati: data });
-};
+};*/
