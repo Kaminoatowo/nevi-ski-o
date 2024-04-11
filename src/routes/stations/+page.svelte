@@ -7,6 +7,8 @@
 
 {#each stations as station}
 	<div>
-		{station.meta.nome} - {station.meta.code}
+		<a href="/stations/{station.meta.code}">
+			{station.meta.nome}
+		</a>
 	</div>
 {/each}
