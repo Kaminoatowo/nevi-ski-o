@@ -1,7 +1,10 @@
-<script>
-	/** @type {import('./$types').PageData} */
+<script lang="ts">
 	export let data;
-    const { json } = data;
 </script>
 
-<p>{data}</p>
+<h1>{data.title}</h1>
+<div>
+	<p>T min = {data.tmin} °C</p>
+	<p>T max = {data.tmax} °C</p>
+	<p>Rain = {data.rain} %</p>
+</div>
