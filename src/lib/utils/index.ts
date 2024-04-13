@@ -14,6 +14,14 @@ export const fetchMarkdownStations = async () => {
     }));
     return stations;
 }
+// https://dati.meteotrentino.it/service.asmx/getListOfMeteoStations
+// Nomi delle stazioni meteo del Trentino
+
+// https://dati.meteotrentino.it/service.asmx/tuttiUltimiRilieviNeve
+// Ultimi rilievi neve delle stazioni meteo del Trentino
+
+// https://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0454
+// Ultimi dati meteo della stazione di Tione di Trento
 
 /*export const fetchMarkdownStations = async () => {
     const API_URL = 'https://dati.meteotrentino.it/service.asmx/getListOfMeteoStations';
