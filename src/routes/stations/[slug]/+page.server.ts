@@ -6,7 +6,7 @@ export const load = async (serverLoadEvent) => {
     const { code, nome } = station.metadata;
     const title = `Informazioni sulla stazione di ${nome}`;
     const STAT_URL = `https://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=${code}`;
-   
+    
     const response = await fetch(STAT_URL);
     const stationsText = await response.text();
     const $ = cheerio.load(stationsText, {

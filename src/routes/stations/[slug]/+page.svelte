@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { DayCloudy } from 'svelte-weather';
+	import { DayCloudy, DayRain, DaySunny, DayHail, DaySnow, DayWindy } from 'svelte-weather';
 	export let data;
+	const rain = data.rain;
 </script>
 
 <div class="w-2/3 mx-auto bg-surface-500 rounded-lg mt-5">
@@ -10,6 +11,12 @@
 	<div class="border rounded text-center m-2 bg-secondary-500">
 		<p>T min = {data.tmin} °C</p>
 		<p>T max = {data.tmax} °C</p>
-		<p>Rain = {data.rain} % <DayCloudy class="inline" /></p>
+		<p>Rain = {data.rain} % 
+			{#if Number(data.rain) > 50}
+				<DayRain class="inline" />
+			{:else}
+				<DaySunny class="inline" />
+			{/if}
+		</p>
 	</div>
 </div>

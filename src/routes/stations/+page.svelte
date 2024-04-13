@@ -1,4 +1,4 @@
-<script>
+<script script>
 	import { spring } from 'svelte/motion';
 	export let data;
 	const stations = data.stations;
