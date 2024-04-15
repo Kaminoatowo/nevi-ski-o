@@ -23,6 +23,10 @@ export const fetchMarkdownStations = async () => {
 // https://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=T0454
 // Ultimi dati meteo della stazione di Tione di Trento
 
+// https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Peio%2C%20Trentino%2C%20Italy?unitGroup=metric&key=JKGZZHWV3GDVBAF96MMBPDCV8&contentType=json
+// Previsioni meteo per Peio, Trentino, Italia, in formato JSON (richiede una chiave API)
+// tramite il servizio Visual Crossing Weather
+
 /*export const fetchMarkdownStations = async () => {
     const API_URL = 'https://dati.meteotrentino.it/service.asmx/getListOfMeteoStations';
     const response = await fetch(API_URL);

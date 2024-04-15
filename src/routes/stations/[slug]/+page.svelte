@@ -11,14 +11,14 @@
 	</h1>
 	<div class="w-1/2 mx-auto border rounded text-center m-2 bg-secondary-500">
 		<p>
-			<Thermometer class="inline" color="blue"/> {data.tmin}°C 
-			<Thermometer class="inline" color="red"/> {data.tmax} °C 
-			Rain = {data.rain} % 
+			<!--Rain = {data.rain} % -->
 			{#if Number(data.rain) > 50}
 				<DayRain class="inline" color="gray"/>
 			{:else}
 				<DaySunny class="inline" color="orange"/>
 			{/if}
+			<Thermometer class="inline" color="blue"/> {data.tmin}°C 
+			<Thermometer class="inline" color="red"/> {data.tmax} °C 
 		</p>
 	</div>
 	<br>
