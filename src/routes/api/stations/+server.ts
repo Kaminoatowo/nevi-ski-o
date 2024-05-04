@@ -5,7 +5,7 @@ export const GET = async () => {
     const stations = await fetchMarkdownStations();
     
     const sortedStations = stations.sort((a, b) => {
-        return a.meta.nome.localeCompare(b.meta.nome);
+        return a.meta.name.localeCompare(b.meta.name);
     });
 
     return json(sortedStations);

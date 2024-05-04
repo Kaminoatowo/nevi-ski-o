@@ -10,7 +10,7 @@
 		<div class="h-10 border rounded text-center p-1 m-4 bg-secondary-500 hover:bg-success-500">
 			<a href="/stations/{station.meta.code}">
 				<h2 class="text-lg hover:text-xl">
-					{station.meta.nome}
+					{station.meta.name}
 				</h2>
 			</a>
 		</div>
