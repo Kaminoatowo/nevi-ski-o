@@ -5,7 +5,7 @@ export const load = async (serverLoadEvent) => {
     const station = await import(`../${params.slug}.md`);
     const { code, name, region, country } = station.metadata;
 
-    const title = `Informazioni su ${name}`;
+    const title = `${name}`;
     //const STAT_URL = `https://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=${code}`;
     const API_KEY = stationsConfig.apiKey;
     const STAT_URL = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${name}%2C%20${region}%2C%20${country}?unitGroup=metric&key=${API_KEY}&contentType=json`;
@@ -15,10 +15,15 @@ export const load = async (serverLoadEvent) => {
 
     //console.log(stationsJSON.days[0].hours[0].temp);
     const current = currentConditions(stationsJSON);
+
+    
+    console.log(daysAgoConditions(stationsJSON)[3]);
+    const forecast = daysAgoConditions(stationsJSON);
     
     return {
         title,
-        current
+        current,
+        forecast
     }   
 }
 
