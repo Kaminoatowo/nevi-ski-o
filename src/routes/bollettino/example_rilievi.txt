@@ -1,0 +1,22 @@
+<rilievo_neve>
+    <dataMis>30/03/2024 00:00:00</dataMis>
+    <codStaz>1PEI</codStaz>
+    <oraDB>900</oraDB>
+    <ww>70</ww>
+    <n>8</n>
+    <v>1</v>
+    <vq1>0</vq1>
+    <vq2>0</vq2>
+    <ta>2 </ta>
+    <tmin>-3 </tmin>
+    <tmax>-6 </tmax>
+    <hs>142</hs>
+    <hn>002</hn>
+    <fi>000</fi>
+    <t10>-2 </t10>
+    <t30>-1 </t30>
+    <pr>023</pr>
+    <cs>11</cs>
+    <s>1</s>
+    <b>0</b>
+</rilievo_neve>
