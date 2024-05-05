@@ -32,6 +32,7 @@
     import { authStore, authHandlers } from '../store/store';
     import { onMount } from 'svelte';
     import { auth } from '$lib/firebase';
+    import img from '$lib/assets/Logo_neviskio.png';
 
     onMount(() => {
         const unsubscribe = auth.onAuthStateChanged( async (user) => {
@@ -99,7 +100,7 @@
                     <MenuBurgerIcon size="1.5x" />
                 </button>
                 <a href="/">
-                    <img src="src/public/Logo_neviskio.png" alt="NeviSki-o" class="w-16" />
+                    <img src={img} alt="NeviSki-o" class="w-16" />
                 </a>
             </svelte:fragment>
             <a href="/" class="pl-1 text-xl font-bold md:pl-2 md:text-2xl">
@@ -135,7 +136,7 @@
     <slot />
     <svelte:fragment slot="pageFooter">
         <section class="m-5 flex flex-col items-center">
-            <img src="src/public/Logo_neviskio.png" alt="NeviSki-o" class="w-16 -m-2" />
+            <img src={img} alt="NeviSki-o" class="w-16 -m-2" />
             <p class="m-2">NeviSki-o</p>
             <span class="variant-soft badge">
                 0.0.1

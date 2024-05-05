@@ -11,13 +11,26 @@
 <div class="space-y-4 overflow-y-auto p-4 pb-20">
     <nav class="list-nav">
     <h2 class="text-2xl font-bold">Bollettino</h2>
-        <a
-        class={classesActive('/bollettino')}
-        href="/bollettino"
-        on:click={drawerClose}
-        >
-            <span>Bollettino</span>
-        </a>
+    <ul>
+        <li>
+            <a
+            class={classesActive('/bollettino')}
+            href="/bollettino"
+            on:click={drawerClose}
+            >
+                <span>Bollettino</span>
+            </a>
+        </li>
+        <li>
+           <a
+            class={classesActive('/stations')}
+            href="/stations"
+            on:click={drawerClose}
+            >
+                <span>Stazioni</span>
+            </a>
+        </li>
+    </ul>    
     <hr class="!my-6 opacity-50">
     <h2 class="text-2xl font-bold">Profilo</h2>
     <ul>
