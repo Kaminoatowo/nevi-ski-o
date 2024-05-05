@@ -1,4 +1,5 @@
 import * as cheerio from 'cheerio';
+import { stat } from 'fs';
 
 export const load = async (serverLoadEvent) => {
     const { fetch, params } = serverLoadEvent;
@@ -16,14 +17,17 @@ export const load = async (serverLoadEvent) => {
     //console.log(stationsJSON.days[0].hours[0].temp);
     const current = currentConditions(stationsJSON);
 
-    
-    console.log(daysAgoConditions(stationsJSON)[3]);
-    const forecast = daysAgoConditions(stationsJSON);
-    
+    //console.log(daysAgoConditions(stationsJSON)[3]);
+    const forecast = daysAgoConditions(stationsJSON).slice(0, 5);
+
+    //console.log(hourlyConditions(stationsJSON)[23].time);
+    const hourly = hourlyConditions(stationsJSON);
+
     return {
         title,
         current,
-        forecast
+        forecast,
+        hourly
     }   
 }
 
@@ -60,10 +64,12 @@ function currentConditions(json: any) {
 }
 
 function daysAgoConditions(json: any) {
+    const weekDays = ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'];
     const days = json.days;
     const daysAgo = days.map((day: any) => {
         return {
             date: day.datetime,
+            day: weekDays[new Date(day.datetime).getDay()],
             tempMax: day.tempmax,
             tempMin: day.tempmin,
             feelslikeMax: day.feelslikemax,
@@ -91,27 +97,31 @@ function daysAgoConditions(json: any) {
 }
 
 function hourlyConditions(json: any) {
-    const hours = json.hours;
+    const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+    const hours = json.days[0].hours;
     const hourly = hours.map((hour: any) => {
         return {
             time: hour.datetime,
             temp: hour.temp,
             feelslike: hour.feelslike,
+            humidity: hour.humidity,
+            dew: hour.dew,
             precip: hour.precip,
             snow: hour.snow,
+            snowDepth: hour.snowdepth,
             precipType: hour.preciptype,
             windGust: hour.windgust,
             windSpeed: hour.windspeed,
             windDirection: hour.winddir,
+            windArrow: directions[Math.round(hour.winddir / 45) % 8],
             pressure: hour.pressure,
-            humidity: hour.humidity,
-            dew: hour.dew,
+            visibility: hour.visibility,
             cloudCover: hour.cloudcover,
+            solarRadiation: hour.solarradiation,
+            solarEnergy: hour.solarenergy,
+            uv: hour.uvindex,
             conditions: hour.conditions,
-            icon: hour.icon,
-            sunrise: hour.sunrise,
-            sunset: hour.sunset,
-            moonPhase: hour.moonphase
+            icon: hour.icon
         }
     });
     return hourly;
