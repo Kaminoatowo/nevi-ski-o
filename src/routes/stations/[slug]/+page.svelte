@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { DayCloudy, DayRain, DaySunny, DayHail, DaySnow, DayWindy, Windy } from 'svelte-weather';
 	import { Thermometer } from 'svelte-weather';
+	import SnowDeposit from '$lib/components/SnowDeposit.svelte';
 	import ForecastCard from '$lib/components/ForecastCard.svelte';
 	import HourlyForecastCard from '$lib/components/HourlyForecastCard.svelte';
 	import WeatherImage from '$lib/components/WeatherImage.svelte';
@@ -41,11 +42,24 @@
 		
 	</div>
 
-	<div class="grid grid-cols-2 sm:gap-4">
-		<ForecastCard {forecast} />
-	
-		<HourlyForecastCard forecast={hourly} />
+	<div class="mx-auto w-full max-w-screen-xl">
+
+		<section>
+			<SnowDeposit forecast={hourly} />
+
+		</section>
+
+		<section class="grid grid-cols-2 sm:gap-4">
+			
+			
+				<ForecastCard {forecast} />
+			
+				<HourlyForecastCard forecast={hourly} />
+			
+		</section>
 	</div>
+
+	
 
 	<br>
 </div>
