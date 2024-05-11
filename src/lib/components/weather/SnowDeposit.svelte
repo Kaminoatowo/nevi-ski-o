@@ -1,5 +1,5 @@
 <script lang="ts">
-    import SnowDepthChart from "./SnowDepthChart.svelte";
+    import SnowDepthChart from './SnowDepthChart.svelte';
     export let forecast;
 </script>
 

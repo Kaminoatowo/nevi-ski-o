@@ -22,7 +22,7 @@
     import type { AfterNavigate } from '@sveltejs/kit';
     import { afterNavigate } from '$app/navigation';
     import { page } from '$app/stores';
-    import SideNavbar from '$lib/components/SideNavbar.svelte';
+    import SideNavbar from '$lib/components/page/SideNavbar.svelte';
     import { 
         computePosition, autoUpdate, offset, 
         shift, flip, arrow 

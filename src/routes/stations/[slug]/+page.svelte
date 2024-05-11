@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { DayCloudy, DayRain, DaySunny, DayHail, DaySnow, DayWindy, Windy } from 'svelte-weather';
 	import { Thermometer } from 'svelte-weather';
-	import SnowDeposit from '$lib/components/SnowDeposit.svelte';
-	import ForecastCard from '$lib/components/ForecastCard.svelte';
-	import HourlyForecastCard from '$lib/components/HourlyForecastCard.svelte';
-	import WeatherImage from '$lib/components/WeatherImage.svelte';
+	import SnowDeposit from '$lib/components/weather/SnowDeposit.svelte';
+	import ForecastCard from '$lib/components/weather/ForecastCard.svelte';
+	import HourlyForecastCard from '$lib/components/weather/HourlyForecastCard.svelte';
+	import WeatherImage from '$lib/components/weather/WeatherImage.svelte';
 
 	export let data;
 	const current = data.current;

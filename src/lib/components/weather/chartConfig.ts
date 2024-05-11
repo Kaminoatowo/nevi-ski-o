@@ -1,6 +1,89 @@
 import type { ApexOptions } from 'apexcharts';
 import dayjs from 'dayjs';
 
+export function getSnowDepthChartConfig(data: any) : ApexOptions{
+	return {
+		chart: {
+			height: '400px',
+			type: 'area',
+			fontFamily: 'inherit',
+			dropShadow: {
+				enabled: false
+			},
+			toolbar: {
+				show: false
+			}
+		},
+		tooltip: {
+			enabled: true,
+			x: {
+				show: false
+			}
+		},
+		fill: {
+			type: 'gradient',
+			gradient: {
+				opacityFrom: 0.55,
+				opacityTo: 0,
+				shade: 'red',
+				gradientToColors: ['green'],
+			}
+		},
+		dataLabels: {
+			enabled: false
+		},
+		stroke: {
+			curve: 'smooth',
+			width: 2,
+		},
+		grid: {
+			show: true,
+			strokeDashArray: 6,
+			borderColor: 'lightblue',
+		},
+		series: [
+			{
+				name: 'Snowfall',
+				data: data,
+				color: '#FFFFFF'
+			}
+		],
+		xaxis: {
+			categories: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'],
+			labels: {
+				show: true,
+				style: {
+					colors: '#FFFFFF'
+				},
+				formatter: function (value) {
+					if (Number(value) % 2 === 0) {
+						return value + ':00';
+					} else {
+						return '';
+					}
+				}
+			},
+			axisBorder: {
+				show: false
+			},
+			axisTicks: {
+				show: false
+			},
+		},
+		yaxis: {
+			labels: {
+				show: true,
+				style: {
+					colors: '#FFFFFF'
+				},
+				formatter: function (value) {
+					return value + ' cm';
+				  }
+			},
+		}
+	};
+}
+
 export function getAccumulationChartConfig(
 	hourlyAccumulation: any[],
 	yDomain: number
