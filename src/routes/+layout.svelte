@@ -29,25 +29,8 @@
     } from '@floating-ui/dom';
     import { storePopup } from '@skeletonlabs/skeleton';
     import type { User } from 'firebase/auth';
-    import { authStore, authHandlers } from '../store/store';
     import { onMount } from 'svelte';
-    import { auth } from '$lib/firebase';
     import img from '$lib/assets/Logo_neviskio.png';
-
-    onMount(() => {
-        const unsubscribe = auth.onAuthStateChanged( async (user) => {
-            if(!user) {
-                authStore.update(() => {
-                    return { user: null };
-                });
-            }else{
-                authStore.update(() => {
-                    return { user: user };
-                });
-            }
-        });
-        return unsubscribe;
-    });
 
     // to scroll back to top when navigating to a new page
     afterNavigate((params: AfterNavigate) => {
@@ -78,11 +61,6 @@
         target: 'popupClick',
         placement: 'left',
     };
-                      
-    let currentUser : User | null;
-    authStore.subscribe((value) => {
-        currentUser = value.user;
-    });
 </script>
 
 <Drawer>
@@ -111,28 +89,16 @@
                     <UserIcon size="1.5x" />
                 </button>                
                 <div class="card p-4 variant-filled-primary" data-popup="popupClick">
-                    {#if currentUser}
-                    <a href="/settings">
-                        <p>Impostazioni</p>
-                    </a>
-                    <a href="/logout">
-                        <p>Esci</p>
-                    </a>
-                    {:else}
                     <a href="/login">
                         <p>Accedi</p>
                     </a>
                     <a href="/signup">
                         <p>Registrati</p>
                     </a>
-                    {/if}
                 </div>           
             </svelte:fragment>
         </AppBar>
 	</svelte:fragment>
-    {#if currentUser}
-    Current user: {currentUser?.displayName}
-    {/if}
     <slot />
     <svelte:fragment slot="pageFooter">
         <section class="m-5 flex flex-col items-center">
