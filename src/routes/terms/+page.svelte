@@ -1,5 +1,12 @@
+<script>
+    import { HomeIcon } from "svelte-uicons/rounded/regular";
+</script>
+
 <p class="p-6">
-    <a href="/" class="underline underline-offset-2">Home</a>>
+    <a href="/" class="underline underline-offset-2">
+        <HomeIcon size="1.0x" class="mr-2 inline-block"/> 
+        Home
+    </a>>
     <a href="/privacy">Termini d'uso</a>
 </p>
 
