@@ -1,0 +1,14 @@
+<p class="p-6">
+    <a href="/" class="underline underline-offset-2">Home</a>>
+    <a href="/privacy">Termini d'uso</a>
+</p>
+
+<h1 class="text-3xl font-bold text-center">Termini d'uso</h1>
+
+<div class="border rounded-xl m-5">
+    <p class="p-6">
+        These Terms of Use govern your access to and use of the NeviSki-o app. 
+        By using the app, you agree to comply with and be bound by these terms. 
+        If you do not agree with these terms, please do not use the app.
+    </p>
+</div>
