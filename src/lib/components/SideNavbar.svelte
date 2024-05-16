@@ -10,59 +10,6 @@
 
 <div class="space-y-4 overflow-y-auto p-4 pb-20">
     <nav class="list-nav">
-    <h2 class="text-2xl font-bold">Bollettino</h2>
-    <ul>
-        <li>
-            <a
-            class={classesActive('/bollettino')}
-            href="/bollettino"
-            on:click={drawerClose}
-            >
-                <span>Bollettino</span>
-            </a>
-        </li>
-        <li>
-           <a
-            class={classesActive('/stations')}
-            href="/stations"
-            on:click={drawerClose}
-            >
-                <span>Stazioni</span>
-            </a>
-        </li>
-    </ul>    
-    <hr class="!my-6 opacity-50">
-    <h2 class="text-2xl font-bold">Profilo</h2>
-    <ul>
-        <li>
-            <a
-            class={classesActive('/alerts')}
-            href="/alerts"
-            on:click={drawerClose}
-            >
-                <span>Notifiche</span>
-            </a>
-        </li>
-        <li>
-            <a
-            class={classesActive('/settings')}
-            href="/settings"
-            on:click={drawerClose}
-            >
-                <span>Impostazioni</span>
-            </a>
-        </li>
-        <li>
-            <a
-            class={classesActive('/')}
-            href="/"
-            on:click={drawerClose}
-            >
-                <span class="flex-auto">Logout</span>
-            </a>
-        </li>
-    </ul>
-    <hr class="!my-6 opacity-50">
     <h2 class="text-2xl font-bold">About</h2>
     <ul>
         <li>
@@ -86,8 +33,8 @@
         </li>
         <li>
             <a
-            class={classesActive('/terms-of-use')}
-            href="/terms-of-use"
+            class={classesActive('/terms')}
+            href="/terms"
             on:click={drawerClose}
             >
                 <span>Termini</span>
@@ -96,7 +43,7 @@
         <li>
             <a
             class={classesActive('/')}
-            href="/"
+            href="/privacy"
             on:click={drawerClose}
             >
                 <span>Privacy</span>
