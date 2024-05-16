@@ -89,10 +89,10 @@
                     <UserIcon size="1.5x" />
                 </button>                
                 <div class="card p-4 variant-filled-primary" data-popup="popupClick">
-                    <a href="/login">
+                    <a href="/register">
                         <p>Accedi</p>
                     </a>
-                    <a href="/signup">
+                    <a href="/register">
                         <p>Registrati</p>
                     </a>
                 </div>           
