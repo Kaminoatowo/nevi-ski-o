@@ -41,6 +41,7 @@
 		"firebase": "^10.10.0",
 		"flowbite-svelte": "^0.46.1",
 		"jsdom": "^24.0.0",
+		"svelte-kit": "^1.2.0",
 		"svelte-weather": "^1.0.2",
 		"xml-js": "^1.6.11",
 		"xml2js": "^0.6.2"
