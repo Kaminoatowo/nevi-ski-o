@@ -84,7 +84,7 @@
             <a href="/" class="pl-1 text-xl font-bold md:pl-2 md:text-2xl">
                 Nevi<span class="gradient-heading">Ski</span>o
             </a>
-            <svelte:fragment slot="trail">
+            <!--svelte:fragment slot="trail">
                 <button use:popup={popupClick}>
                     <UserIcon size="1.5x" />
                 </button>                
@@ -96,7 +96,7 @@
                         <p>Registrati</p>
                     </a>
                 </div>           
-            </svelte:fragment>
+            </!--svelte:fragment-->
         </AppBar>
 	</svelte:fragment>
     <slot />

@@ -21,7 +21,7 @@
                 <span>Github</span>
             </a>
         </li>
-        <li>
+        <!--li>
             <a
             href="mailto:contact@neviskio.com"
             target="_blank"
@@ -30,7 +30,7 @@
             >
                 <span>Contatti</span>
             </a>
-        </li>
+        </!--li-->
         <li>
             <a
             class={classesActive('/terms')}
