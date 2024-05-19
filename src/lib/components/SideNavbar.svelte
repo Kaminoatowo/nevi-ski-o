@@ -10,45 +10,67 @@
 
 <div class="space-y-4 overflow-y-auto p-4 pb-20">
     <nav class="list-nav">
-    <h2 class="text-2xl font-bold">About</h2>
-    <ul>
-        <li>
+        <h2 class="text-2xl font-bold">Bollettino</h2>
+        <ul>
+            <!--li>
+                <a
+                class={classesActive('/bollettino')}
+                href="/bollettino"
+                on:click={drawerClose}
+                >
+                    <span>Bollettino</span>
+                </a>
+            </!--li-->
+            <li>
             <a
-            href="https://github.com/Kaminoatowo/nevi-ski-o"
-            target="_blank"
-            on:click={drawerClose}
-            >
-                <span>Github</span>
-            </a>
-        </li>
-        <!--li>
-            <a
-            href="mailto:contact@neviskio.com"
-            target="_blank"
-            rel="noopener"
-            on:click={drawerClose}
-            >
-                <span>Contatti</span>
-            </a>
-        </!--li-->
-        <li>
-            <a
-            class={classesActive('/terms')}
-            href="/terms"
-            on:click={drawerClose}
-            >
-                <span>Termini</span>
-            </a>
-        </li>
-        <li>
-            <a
-            class={classesActive('/')}
-            href="/privacy"
-            on:click={drawerClose}
-            >
-                <span>Privacy</span>
-            </a>
-        </li>
-    </ul>
+                class={classesActive('/stations')}
+                href="/stations"
+                on:click={drawerClose}
+                >
+                    <span>Stazioni</span>
+                </a>
+            </li>
+        </ul>    
+        <hr class="!my-6 opacity-50">
+        <h2 class="text-2xl font-bold">About</h2>
+        <ul>
+            <li>
+                <a
+                href="https://github.com/Kaminoatowo/nevi-ski-o"
+                target="_blank"
+                on:click={drawerClose}
+                >
+                    <span>Github</span>
+                </a>
+            </li>
+            <!--li>
+                <a
+                href="mailto:contact@neviskio.com"
+                target="_blank"
+                rel="noopener"
+                on:click={drawerClose}
+                >
+                    <span>Contatti</span>
+                </a>
+            </!--li-->
+            <li>
+                <a
+                class={classesActive('/terms')}
+                href="/terms"
+                on:click={drawerClose}
+                >
+                    <span>Termini</span>
+                </a>
+            </li>
+            <li>
+                <a
+                class={classesActive('/')}
+                href="/privacy"
+                on:click={drawerClose}
+                >
+                    <span>Privacy</span>
+                </a>
+            </li>
+        </ul>
     </nav>
 </div>

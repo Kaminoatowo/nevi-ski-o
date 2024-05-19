@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { HomeIcon } from "svelte-uicons/rounded/regular";
 	import { DayCloudy, DayRain, DaySunny, DayHail, DaySnow, DayWindy, Windy } from 'svelte-weather';
 	import { Thermometer } from 'svelte-weather';
 	import ForecastCard from '$lib/components/ForecastCard.svelte';
@@ -10,13 +11,14 @@
 	const forecast = data.forecast;
 	const hourly = data.hourly;
 </script>
+<p class="p-6">
+	<HomeIcon size="1.0x" class="mr-2 inline-block"/> 
+	<a href="/" class="underline underline-offset-2">Home</a>>
+	<a href="/stations" class="underline underline-offset-2">Stazioni</a>>
+	{data.title}
+</p>
 
 <div class="sm:w-4/5 mx-auto bg-surface-500 sm:rounded-lg mt-5">
-	<p class="p-6">
-		<a href="/" class="underline underline-offset-2">Home</a>>
-		<a href="/stations" class="underline underline-offset-2">Stazioni</a>>
-		{data.title}
-	</p>
 
 	<div class="flex flex-row justify-end">
 		
@@ -41,7 +43,7 @@
 		
 	</div>
 
-	<div class="grid grid-cols-2 sm:gap-4">
+	<div class="grid grid-cols-1 sm:grid-cols-2 sm:gap-4">
 		<ForecastCard {forecast} />
 	
 		<HourlyForecastCard forecast={hourly} />

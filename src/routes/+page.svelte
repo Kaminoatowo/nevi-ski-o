@@ -10,7 +10,6 @@
     <p class="w-3/4 text-center text-xl m-4">Scopri il bollettino attuale sulla presenza di neve sulle tue piste preferite,
         ottieni previsioni accurate e ricevi notifiche in tempo reale.
     </p>
-    <p class="italic">Ah, dimenticavo: è tutto gratis!</p>
 </section>
 
 <AnimationFrameSnow height=''/>

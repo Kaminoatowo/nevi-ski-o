@@ -2,7 +2,7 @@ import { stationsConfig } from '$lib/stations-vcw.config.js';
 export const load = async (serverLoadEvent) => {
     const { fetch, params } = serverLoadEvent;
     const station = await import(`../${params.slug}.md`);
-    const { code, name, region, country } = station.metadata;
+    const { name, region, country } = station.metadata;
 
     const title = `${name}`;
 
