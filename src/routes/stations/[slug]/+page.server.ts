@@ -3,10 +3,10 @@ import { stationsConfig } from '$lib/stations-vcw.config.js';
 export const load = async (serverLoadEvent) => {
     const { fetch, params } = serverLoadEvent;
     const station = await import(`../${params.slug}.md`);
-    const { code, name, region, country } = station.metadata;
+    const { name, region, country } = station.metadata;
 
     const title = `${name}`;
-    //const STAT_URL = `https://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=${code}`;
+
     const API_KEY = stationsConfig.apiKey;
     const STAT_URL = stationsConfig.statUrl;
     
