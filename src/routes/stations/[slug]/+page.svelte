@@ -5,6 +5,7 @@
 	import ForecastCard from '$lib/components/ForecastCard.svelte';
 	import HourlyForecastCard from '$lib/components/HourlyForecastCard.svelte';
 	import WeatherImage from '$lib/components/WeatherImage.svelte';
+	import SnowDeposit from '$lib/components/chart/SnowDeposit.svelte'; // Add this line
 
 	export let data;
 	const current = data.current;
@@ -42,6 +43,11 @@
 		</div>
 		
 	</div>
+
+	<section>
+		<SnowDeposit forecast={hourly} />
+
+	</section>
 
 	<div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-4">
 		<ForecastCard {forecast} />
