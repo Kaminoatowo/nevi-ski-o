@@ -18,7 +18,7 @@
 	{data.title}
 </p>
 
-<div class="sm:w-4/5 mx-auto bg-surface-500 sm:rounded-lg mt-5">
+<div class="lg:w-4/5 mx-auto bg-surface-500 lg:rounded-lg mt-5">
 
 	<div class="flex flex-row justify-end">
 		
@@ -43,7 +43,7 @@
 		
 	</div>
 
-	<div class="grid grid-cols-1 sm:grid-cols-2 sm:gap-4">
+	<div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-4">
 		<ForecastCard {forecast} />
 	
 		<HourlyForecastCard forecast={hourly} />

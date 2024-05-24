@@ -13,7 +13,7 @@
             Previsioni
         </h2>
     </div>
-    <div class="flex h-full w-full flex-col md:justify-evenly">
+    <div class="flex h-full w-full flex-col lg:justify-evenly">
         <div class="flex justify-between p-4 sm:p-6">
             <div class="flex flex-col p-4">
                 <p class="text-3xl font-bold">

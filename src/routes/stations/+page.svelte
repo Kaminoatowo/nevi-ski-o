@@ -8,18 +8,19 @@
 	<a href="/" class="underline underline-offset-2">Home</a>>
 	<a href="/stations">Stazioni</a>
 </p>
-<div class="sm:w-1/2 mx-1 sm:mx-auto bg-surface-500 rounded-lg mt-5">
+<div class="md:w-1/2 mx-1 md:mx-auto bg-surface-500 rounded-lg mt-5">
 	<h1 class="text-center h-20 p-5 text-2xl font-bold">Stazioni</h1>
 	<h2 class="text-center h-20 p-5 text-xl">Consulta dalla lista</h2>
 	
 	{#each stations as station}
-		<div class="w-1/2 m-auto h-10 border rounded text-center p-1 bg-secondary-500 hover:bg-success-500">
+		<div class="w-4/5 mx-auto h-10 text-center p-1 bg-gradient-to-r from-surface-500 via-secondary-800 to-surface-500 hover:via-success-500">
 			<a href="/stations/{station.meta.name}">
 				<h2 class="text-lg hover:text-xl">
 					{station.meta.name}
 				</h2>
 			</a>
 		</div>
+		<hr class="w-4/5 mx-auto bg-surface-500 h-2">
 	{/each}
 
 	<!--p class="text-center">o</!--p>
