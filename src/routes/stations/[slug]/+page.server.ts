@@ -2,14 +2,12 @@ import { stationsConfig } from '$lib/stations-vcw.config.js';
 export const load = async (serverLoadEvent) => {
     const { fetch, params } = serverLoadEvent;
     const station = await import(`../${params.slug}.md`);
-    const { name, region, country } = station.metadata;
-
-    const title = `${name}`;
+    const { title, location, region, country } = station.metadata;
 
     const API_KEY = stationsConfig.apiKey;
     const STAT_URL = stationsConfig.statUrl;
 
-    const current_URL = `${STAT_URL}/${name}%2C%20${region}%2C%20${country}?unitGroup=metric&key=${API_KEY}&contentType=json`;
+    const current_URL = `${STAT_URL}/${location}%2C%20${region}%2C%20${country}?unitGroup=metric&key=${API_KEY}&contentType=json`;
 
     const response = await fetch(current_URL);
     const stationsJSON = await response.json();
