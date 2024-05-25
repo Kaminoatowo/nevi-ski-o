@@ -1,7 +1,7 @@
 ---
-name: Folgaria
-title: Folgaria
+name: Predaia
+title: Predaia
 region: Trentino-Alto Adige
 country: Italy
-group: Alpe Cimbra
+group: Val di Non
 ---

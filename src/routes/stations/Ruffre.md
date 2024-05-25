@@ -1,7 +1,7 @@
 ---
-name: Folgaria
-title: Folgaria
+name: Ruffre
+title: Ruffré
 region: Trentino-Alto Adige
 country: Italy
-group: Alpe Cimbra
+group: Val di Non
 ---
