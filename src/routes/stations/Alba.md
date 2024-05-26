@@ -2,6 +2,6 @@
 name: Alba
 title: Alba-Ciampac
 region: Trentino-Alto Adige
-country: Italy
+country: Italia
 group: Val di Fassa
 ---

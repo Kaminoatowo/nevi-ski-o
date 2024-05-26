@@ -2,6 +2,6 @@
 name: Passo Mendola
 title: Passo Mendola-Campi da Golf
 region: Trentino-Alto Adige
-country: Italy
+country: Italia
 group: Val di Non
 ---

@@ -2,6 +2,6 @@
 name: Pinzolo
 title: Passo di Lavazè-Passo Oclini
 region: Trentino-Alto Adige
-country: Italy
+country: Italia
 group: Val di  Fiemme
 ---

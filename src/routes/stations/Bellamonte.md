@@ -2,6 +2,6 @@
 name: Bellamonte
 title: Bellamonte-Alpe Lusia
 region: Trentino-Alto Adige
-country: Italy
+country: Italia
 group: Val di Fiemme
 ---

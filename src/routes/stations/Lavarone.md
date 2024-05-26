@@ -2,6 +2,6 @@
 name: Lavarone
 title: Lavarone
 region: Trentino-Alto Adige
-country: Italy
+country: Italia
 group: Alpe Cimbra
 ---

@@ -2,6 +2,6 @@
 name: Passo Fedaia
 title: Passo Fedaia-Marmolada
 region: Trentino-Alto Adige
-country: Italy
+country: Italia
 group: Val di Fassa
 ---

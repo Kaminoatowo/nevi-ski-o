@@ -2,6 +2,6 @@
 name: Canazei
 title: Canazei-Bel Vedere
 region: Trentino-Alto Adige
-country: Italy
+country: Italia
 group: Val di Fassa
 ---

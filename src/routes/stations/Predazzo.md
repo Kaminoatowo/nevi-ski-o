@@ -2,6 +2,6 @@
 name: Predazzo
 title: Pampeago-Predazzo-Obereggen
 region: Trentino-Alto Adige
-country: Italy
+country: Italia
 group: Val di Fiemme
 ---

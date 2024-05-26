@@ -2,6 +2,6 @@
 name: Alpe Cremis
 title: Alpe Cremis
 region: Trentino-Alto Adige
-country: Italy
+country: Italia
 group: Val di Fiemme
 ---

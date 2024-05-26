@@ -2,6 +2,6 @@
 name: Falcade
 title: Passo San Pellegrino-Falcade
 region: Trentino-Alto Adige
-country: Italy
+country: Italia
 group: Val di Fassa
 ---

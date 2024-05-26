@@ -2,6 +2,6 @@
 name: Campitello
 title: Campitello-Mazzini-Col Rodella
 region: Trentino-Alto Adige
-country: Italy
+country: Italia
 group: Val di Fassa
 ---

@@ -2,6 +2,6 @@
 name: Peio
 title: Peio
 region: Trentino-Alto Adige
-country: Italy
+country: Italia
 group: Folgarida-Marilleva-Peio-Passo del Tonale
 ---

@@ -2,6 +2,6 @@
 name: Ruffre
 title: Ruffré
 region: Trentino-Alto Adige
-country: Italy
+country: Italia
 group: Val di Non
 ---

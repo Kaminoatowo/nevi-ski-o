@@ -2,6 +2,6 @@
 name: Passo Rolle
 title: San Martino di Castrozza-Passo Rolle
 region: Trentino-Alto Adige
-country: Italy
+country: Italia
 group: San Martino di Castrozza-Passo Rolle, Primiero e Vanoi
 ---
