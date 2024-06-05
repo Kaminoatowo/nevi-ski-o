@@ -1,5 +1,5 @@
 ---
-name: Madonna di Campiglio
+name: Campiglio
 title: Madonna di Campiglio
 region: Trentino-Alto Adige
 country: Italia

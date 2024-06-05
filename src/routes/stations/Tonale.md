@@ -1,5 +1,5 @@
 ---
-name: Passo del Tonale
+name: Tonale
 title: Passo del Tonale
 region: Trentino-Alto Adige
 country: Italia

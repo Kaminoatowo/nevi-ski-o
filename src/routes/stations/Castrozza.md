@@ -1,5 +1,5 @@
 ---
-name: Passo Rolle
+name: Castrozza
 title: San Martino di Castrozza-Passo Rolle
 region: Trentino-Alto Adige
 country: Italia
