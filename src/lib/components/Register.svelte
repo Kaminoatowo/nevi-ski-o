@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { authHandlers } from "../../store/store";
+    import { authHandlers } from "$lib/store/store";
     import { GoogleIcon } from 'svelte-uicons/brands';
 
     let email = '';
