@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { HomeIcon } from "svelte-uicons/rounded/regular";
-	import { DayCloudy, DayRain, DaySunny, DayHail, DaySnow, DayWindy, Windy } from 'svelte-weather';
 	import { Thermometer } from 'svelte-weather';
-	import ForecastCard from '$lib/components/ForecastCard.svelte';
-	import HourlyForecastCard from '$lib/components/HourlyForecastCard.svelte';
-	import WeatherImage from '$lib/components/WeatherImage.svelte';
+	import ForecastCard from '$lib/components/weather/ForecastCard.svelte';
+	import HourlyForecastCard from '$lib/components/weather/HourlyForecastCard.svelte';
+	import WeatherImage from '$lib/components/weather/WeatherImage.svelte';
 	import SnowDeposit from '$lib/components/chart/SnowDeposit.svelte'; // Add this line
 
 	export let data;
@@ -23,7 +22,7 @@
 
 	<div class="flex flex-row justify-end">
 		
-		<h1 class="p-5 text-3xl inline-block">
+		<h1 class="p-5">
 			{data.title}
 		</h1>
 		<div class="w-1/2 mx-auto border rounded text-center m-5 inline-block bg-secondary-500">

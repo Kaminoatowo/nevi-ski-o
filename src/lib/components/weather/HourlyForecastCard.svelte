@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { DayCloudy, DayRain, DaySunny, DayHail, DaySnow, DayWindy, Windy, WindDeg } from 'svelte-weather';
+    import { WindDeg } from 'svelte-weather';
     import WeatherImage from './WeatherImage.svelte';
 
     export let forecast;

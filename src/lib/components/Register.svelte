@@ -8,7 +8,7 @@
 
 <main class="flex flex-col items-center justify-center">
     <div class="mt-12 rounded-lg bg-secondary-500/10 px-4 py-4 w-1/2">
-        <h1 class="text-2xl text-white font-bold">Registrati</h1>
+        <h1 class="text-white">Registrati</h1>
         <p class="mt-4 text-white">Registra la tua mail per restare informato sui nostri prossimi sviluppi!</p>
         <form class="mt-12">
             <input bind:value={email} type="email" placeholder="Email" class="p-4 bg-white text-black rounded-lg w-full" />
