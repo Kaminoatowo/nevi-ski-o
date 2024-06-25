@@ -10,7 +10,7 @@
     <a href="/privacy">Termini d'uso</a>
 </p>
 
-<div class="flex flex-col items-center">
+<div class="flex-center">
 
     <h1>Termini d'uso</h1>
     

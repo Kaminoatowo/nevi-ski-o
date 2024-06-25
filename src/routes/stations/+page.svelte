@@ -8,7 +8,7 @@
 	<a href="/" class="underline underline-offset-2">Home</a>>
 	<a href="/stations">Stazioni</a>
 </p>
-<div class="md:w-1/2 mx-1 md:mx-auto bg-surface-500 rounded-lg mt-5 flex flex-col items-center">
+<div class="md:w-1/2 mx-1 md:mx-auto bg-surface-500 rounded-lg mt-5 flex-center">
 
 		<h1 class="h-20 p-5">Stazioni</h1>
 		<h2 class="h-20 p-5">Consulta dalla lista</h2>

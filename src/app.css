@@ -19,3 +19,7 @@ h3 { @apply text-lg inline-block; }
 	/* Color Stops */
 	@apply from-primary-500 via-tertiary-500 to-secondary-500;
 }
+
+.flex-center {
+	@apply flex flex-col items-center justify-center;
+}

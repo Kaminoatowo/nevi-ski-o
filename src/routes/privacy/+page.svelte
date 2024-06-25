@@ -10,7 +10,7 @@
     <a href="/privacy">Privacy policy</a>
 </p>
 
-<div class="flex flex-col items-center">
+<div class="flex-center">
 
     <h1>Privacy Policy</h1>
     
