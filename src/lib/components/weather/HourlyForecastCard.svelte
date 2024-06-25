@@ -3,6 +3,39 @@
     import WeatherImage from './WeatherImage.svelte';
 
     export let forecast;
+
+    //let rotate = "rotate-0";
+    let rotate = (direction : string) => {
+        switch (direction) {
+            case "N":
+                return "rotate-0";
+                break;
+            case "NE":
+                return "rotate-45";
+                break;
+            case "E":
+                return "rotate-90";
+                break;
+            case "SE":
+                return "rotate-135";
+                break;
+            case "S":
+                return "rotate-180";
+                break;
+            case "SW":
+                return "-rotate-135";
+                break;
+            case "W":
+                return "-rotate-90";
+                break;
+            case "NW":
+                return "-rotate-45";
+                break;
+            default:
+                return "rotate-0";
+                break;
+        }
+    }
 </script>
 
 <div class="p-5 card !rounded-lg border border-surface-500 !bg-surface-900 shadow-md float-left">
@@ -33,7 +66,7 @@
                                 {hour.windSpeed} km/h
                             </p>
                             <p class="text-xs sm:text-sm text-surface-400">
-                                <WindDeg class="inline rotate-${hour.windDirection}deg" />
+                                <WindDeg class="{rotate(hour.windArrow)}" />
                                 {hour.windArrow}
                             </p>
                         </div>
