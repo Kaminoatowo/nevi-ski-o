@@ -5,12 +5,24 @@
 	import HourlyForecastCard from '$lib/components/weather/HourlyForecastCard.svelte';
 	import WeatherImage from '$lib/components/weather/WeatherImage.svelte';
 	import SnowDeposit from '$lib/components/chart/SnowDeposit.svelte'; // Add this line
+	import { fetchWeather } from "$lib/utils/index.js";
+	import { onMount } from "svelte";
 
 	export let data;
 	const current = data.current;
 	const forecast = data.forecast;
 	const hourly = data.hourly;
-</script>
+
+	let weather : string = "";
+	onMount(async () => {
+    	let waiting = await fetchWeather(current.conditions);
+		if (typeof waiting == 'string') {
+			weather = waiting;
+		} else {
+			weather = "Errore";
+		}
+  	});
+  </script>
 <p class="p-6">
 	<HomeIcon size="1.0x" class="mr-2 inline-block"/> 
 	<a href="/" class="underline underline-offset-2">Home</a>>
@@ -28,7 +40,7 @@
 		<div class="w-1/2 mx-auto border rounded text-center m-5 inline-block bg-secondary-500">
 			<p>
 				<WeatherImage forecast={current} />
-				{current.conditions}
+				{weather}
 				
 				{#if Number(current.temp) > 20}
 				<Thermometer class="inline"	color="red"/>

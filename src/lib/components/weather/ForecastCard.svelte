@@ -1,10 +1,22 @@
 <script lang="ts">
     import { DayCloudy, DayRain, DaySunny, DayHail, DaySnow, DayWindy, Windy } from 'svelte-weather';
     import WeatherImage from './WeatherImage.svelte';
+    import { fetchWeather } from "$lib/utils/index.js";
+    import { onMount } from "svelte";
 
     export let forecast;
     const today = forecast[0];
     const days = forecast.slice(1);
+
+    let weather : string = "";
+	onMount(async () => {
+    	let waiting = await fetchWeather(today.conditions);
+		if (typeof waiting == 'string') {
+			weather = waiting;
+		} else {
+			weather = "Errore";
+		}
+  	});
 </script>
 
 <div class="p-5 card !rounded-lg border border-surface-500 !bg-surface-900 shadow-md float-left">
@@ -20,7 +32,7 @@
                     {today.tempMax}°C
                 </p>
                 <p class="text-xl font-semibold">
-                    {today.conditions}
+                    {weather}
                 </p>
                 <div class="flex">
                     <p>

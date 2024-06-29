@@ -65,7 +65,7 @@
                             <p class="text-xs sm:text-sm text-surface-400">
                                 {hour.windSpeed} km/h
                             </p>
-                            <p class="text-xs sm:text-sm text-surface-400">
+                            <p class="text-xs sm:text-sm grid grid-cols-2 gap-3">
                                 <WindDeg class="{rotate(hour.windArrow)}" />
                                 {hour.windArrow}
                             </p>

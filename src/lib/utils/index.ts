@@ -14,6 +14,48 @@ export const fetchMarkdownStations = async () => {
     }));
     return stations;
 }
+
+import langData from "$lib/utils/lang_forecast.json";
+
+type LangType = {
+    [key: string]: { [key: string]: string };
+};
+
+const lang: LangType = langData;
+export const translate_forecast = async (text: string) => {
+    let search = text.toLowerCase().replace(/,/g, '_').replace(/\s/g, '_');
+    //console.log(search)
+    let array_search = search.split("__");
+    //const lang = await fetch("lang_forecast.json");
+    //console.log(array_search);
+    
+    let result_array: string[] = [];
+    for (let i = 0; i < array_search.length; i++) {
+        if (lang.it_IT[array_search[i]]) {
+            result_array[i] = lang.it_IT[array_search[i]];
+        }
+    }
+    let result = result_array.join(", ");
+    //console.log(result);
+    if (result) {
+        let found = result[0].toUpperCase() + result.slice(1);
+        return found;
+    } else {
+        return text;
+    }
+}
+
+export async function fetchWeather(toTranslate: string) {
+    // Mocking a promise that resolves to 'Parzialmente nuvoloso'
+    let weatherPromise = translate_forecast(toTranslate);
+
+    try {
+        const weather = await weatherPromise; // Await the promise
+        return weather; // Logs 'Parzialmente nuvoloso'
+    } catch (error) {
+        console.error('Error fetching weather:', error);
+    }
+}
 // https://dati.meteotrentino.it/service.asmx/getListOfMeteoStations
 // Nomi delle stazioni meteo del Trentino
 
