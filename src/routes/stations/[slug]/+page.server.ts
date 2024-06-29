@@ -1,17 +1,19 @@
-import * as cheerio from 'cheerio';
-import { stat } from 'fs';
+import { stationsConfig } from '$lib/stations-vcw.config.js';
+import { translate_forecast, fetchWeather } from '$lib/utils';
 
 export const load = async (serverLoadEvent) => {
     const { fetch, params } = serverLoadEvent;
     const station = await import(`../${params.slug}.md`);
-    const { code, name, region, country } = station.metadata;
+    const { name, region, country } = station.metadata;
 
     const title = `${name}`;
-    //const STAT_URL = `https://dati.meteotrentino.it/service.asmx/ultimiDatiStazione?codice=${code}`;
-    const API_KEY = 'JKGZZHWV3GDVBAF96MMBPDCV8';
-    const STAT_URL = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${name}%2C%20${region}%2C%20${country}?unitGroup=metric&key=${API_KEY}&contentType=json`;
+
+    const API_KEY = stationsConfig.apiKey;
+    const STAT_URL = stationsConfig.statUrl;
     
-    const response = await fetch(STAT_URL);
+    const current_url = `${STAT_URL}/${name}%2C%20${region}%2C%20${country}?unitGroup=metric&key=${API_KEY}&contentType=json`;
+    
+    const response = await fetch(current_url);
     const stationsJSON = await response.json();
 
     //console.log(stationsJSON.days[0].hours[0].temp);

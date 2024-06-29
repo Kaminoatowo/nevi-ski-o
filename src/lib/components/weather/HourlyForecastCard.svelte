@@ -1,0 +1,88 @@
+<script lang="ts">
+    import { WindDeg } from 'svelte-weather';
+    import WeatherImage from './WeatherImage.svelte';
+
+    export let forecast;
+
+    let current_time = new Date().getHours();
+
+    //let rotate = "rotate-0";
+    let rotate = (direction : string) => {
+        switch (direction) {
+            case "N":
+                return "rotate-0";
+                break;
+            case "NE":
+                return "rotate-45";
+                break;
+            case "E":
+                return "rotate-90";
+                break;
+            case "SE":
+                return "rotate-135";
+                break;
+            case "S":
+                return "rotate-180";
+                break;
+            case "SW":
+                return "-rotate-135";
+                break;
+            case "W":
+                return "-rotate-90";
+                break;
+            case "NW":
+                return "-rotate-45";
+                break;
+            default:
+                return "rotate-0";
+                break;
+        }
+    }
+</script>
+
+<div class="p-5 card !rounded-lg border border-surface-500 !bg-surface-900 shadow-md float-left">
+    <div class="rounded-t-lg border-b border-b-surface-500 bg-surface-800 p-5">
+        <h2 class="text-2xl">
+            Previsioni orarie
+        </h2>
+    </div>
+    <div class="max-h-[500px] overflow-auto px-4 py-6">
+        {#each forecast as hour}
+            
+        <ul class="list">
+            
+            <li class="!rounded-md hover:bg-primary-200">
+                <div class="grid w-full grid-cols-6 items-center gap-3 py-2">
+                    {#if current_time != hour.time.slice(0, 2)}
+                    <p class="text-xs text-surface-400 sm:text-sm">
+                        {hour.time.slice(0, 5)}
+                    </p>
+                    {:else}
+                    <p class="text-xs text-warning-500 sm:text-sm">
+                        {hour.time.slice(0, 5)}
+                    </p>
+                    {/if}
+                    <WeatherImage forecast={hour} />
+                    <p class="text-start text-sm">
+                        {hour.snowDepth} cm
+                    </p>
+                    <p class="text-sm font-bold">
+                        {hour.temp}°C
+                    </p>
+                    <span class="col-span-2">
+                        <div class="flex justify-evenly">
+                            <p class="text-xs sm:text-sm text-surface-400">
+                                {hour.windSpeed} km/h
+                            </p>
+                            <p class="text-xs sm:text-sm grid grid-cols-2 gap-3">
+                                <WindDeg class="{rotate(hour.windArrow)}" />
+                                {hour.windArrow}
+                            </p>
+                        </div>
+                    </span>
+                </div>
+            </li>
+        </ul>
+        {/each}
+    </div>
+</div>

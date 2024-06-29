@@ -3,13 +3,9 @@
     import { 
         AppShell, 
         AppBar, 
-        AppRail, 
-        AppRailAnchor, 
-        AppRailTile,
         Drawer, 
         getDrawerStore,
         type DrawerSettings, 
-        type DrawerStore,
         initializeStores,
         type PopupSettings,
         popup
@@ -21,7 +17,6 @@
      } from 'svelte-uicons/rounded/regular';
     import type { AfterNavigate } from '@sveltejs/kit';
     import { afterNavigate } from '$app/navigation';
-    import { page } from '$app/stores';
     import SideNavbar from '$lib/components/SideNavbar.svelte';
     import { 
         computePosition, autoUpdate, offset, 
@@ -29,7 +24,7 @@
     } from '@floating-ui/dom';
     import { storePopup } from '@skeletonlabs/skeleton';
     import type { User } from 'firebase/auth';
-    import { authStore, authHandlers } from '../store/store';
+    import { authStore } from '$lib/store/store';
     import { onMount } from 'svelte';
     import { auth } from '$lib/firebase';
     import img from '$lib/assets/Logo_neviskio.png';
@@ -78,7 +73,7 @@
         target: 'popupClick',
         placement: 'left',
     };
-                      
+
     let currentUser : User | null;
     authStore.subscribe((value) => {
         currentUser = value.user;
@@ -126,13 +121,10 @@
                         <p>Registrati</p>
                     </a>
                     {/if}
-                </div>           
+                </div>                   
             </svelte:fragment>
         </AppBar>
 	</svelte:fragment>
-    {#if currentUser}
-    Current user: {currentUser?.displayName}
-    {/if}
     <slot />
     <svelte:fragment slot="pageFooter">
         <section class="m-5 flex flex-col items-center">

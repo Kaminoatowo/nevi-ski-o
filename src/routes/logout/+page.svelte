@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { authHandlers } from "../../store/store";
+    import { authHandlers } from "$lib/store/store";
 
     authHandlers.logout();
 </script>

@@ -6,10 +6,20 @@ html, body { @apply h-full overflow-hidden; }
 
 body { @apply bg-surface-50-900-token; }
 
+h1 { @apply text-3xl font-bold inline-block; }
+
+h2 { @apply text-xl inline-block; }
+
+h3 { @apply text-lg inline-block; }
+
 .gradient-heading {
 	@apply bg-clip-text text-transparent box-decoration-clone;
 	/* Direction */
 	@apply bg-gradient-to-br;
 	/* Color Stops */
 	@apply from-primary-500 via-tertiary-500 to-secondary-500;
+}
+
+.flex-center {
+	@apply flex flex-col items-center justify-center;
 }
