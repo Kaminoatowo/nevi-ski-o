@@ -4,6 +4,8 @@
 
     export let forecast;
 
+    let current_time = new Date().getHours();
+
     //let rotate = "rotate-0";
     let rotate = (direction : string) => {
         switch (direction) {
@@ -48,11 +50,18 @@
         {#each forecast as hour}
             
         <ul class="list">
-            <li class="!rounded-md">
+            
+            <li class="!rounded-md hover:bg-primary-200">
                 <div class="grid w-full grid-cols-6 items-center gap-3 py-2">
+                    {#if current_time != hour.time.slice(0, 2)}
                     <p class="text-xs text-surface-400 sm:text-sm">
                         {hour.time.slice(0, 5)}
                     </p>
+                    {:else}
+                    <p class="text-xs text-warning-500 sm:text-sm">
+                        {hour.time.slice(0, 5)}
+                    </p>
+                    {/if}
                     <WeatherImage forecast={hour} />
                     <p class="text-start text-sm">
                         {hour.snowDepth} cm
