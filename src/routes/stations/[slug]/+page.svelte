@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { HomeIcon } from "svelte-uicons/rounded/regular";
+	import { HomeIcon, StarIcon } from "svelte-uicons/rounded/regular";
 	import { Thermometer } from 'svelte-weather';
 	import ForecastCard from '$lib/components/weather/ForecastCard.svelte';
 	import HourlyForecastCard from '$lib/components/weather/HourlyForecastCard.svelte';
@@ -7,14 +7,21 @@
 	import SnowDeposit from '$lib/components/chart/SnowDeposit.svelte'; // Add this line
 	import { fetchWeather } from "$lib/utils/index.js";
 	import { onMount } from "svelte";
+	import { preferredStations } from "$lib/store/preferredStations.js";
+	import { get } from "svelte/store";
 
 	export let data;
 	const current = data.current;
 	const forecast = data.forecast;
 	const hourly = data.hourly;
+	
+	let station: string = ""; 
+	let isPreferred = false;
 
 	let weather : string = "";
 	onMount(async () => {
+		station = data.title; // maybe use data.title
+		isPreferred = get(preferredStations).includes(station);
     	let waiting = await fetchWeather(current.conditions);
 		if (typeof waiting == 'string') {
 			weather = waiting;
@@ -22,6 +29,18 @@
 			weather = "Errore";
 		}
   	});
+
+	function togglePreferred() {
+		preferredStations.update((current) => {
+			if (current.includes(station)) {
+				return current.filter((item) => item !== station);
+			} else {
+				return [...current, station];
+			}
+		});
+		isPreferred = !isPreferred;
+	}
+
   </script>
 <p class="p-6">
 	<HomeIcon size="1.0x" class="mr-2 inline-block"/> 
@@ -52,7 +71,9 @@
 				{current.temp}°C
 			</p>
 		</div>
-		
+		<div>
+			<StarIcon size="1.5x" class="m-5 mt-7 inline-block hover:fill-warning-400 hover:shadow-xl"/>
+		</div>
 	</div>
 
 	<section>
