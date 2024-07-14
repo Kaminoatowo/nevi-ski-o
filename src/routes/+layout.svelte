@@ -8,7 +8,10 @@
         type DrawerSettings, 
         initializeStores,
         type PopupSettings,
-        popup
+        popup,
+        Toast, getToastStore,
+        type ToastSettings, 
+        type ToastStore
     } from '@skeletonlabs/skeleton';
     //import { LightSwitch } from '@skeletonlabs/skeleton';
     import {    
@@ -39,6 +42,11 @@
                 authStore.update(() => {
                     return { user: user };
                 });
+                const t: ToastSettings = {
+                    message: 'Benvenuto '+ user.displayName +'!',
+                    timeout: 5000,
+                };
+                toastStore.trigger(t);
             }
         });
         return unsubscribe;
@@ -53,10 +61,9 @@
         }
     });
 
-    // to manage the current tile
-    let currentTile: number = 0;
-
     initializeStores();
+
+    // DRAWERS
     const drawerStore = getDrawerStore();
     const settings: DrawerSettings = { width: 'w-[280px] md:w-[480px]' };
     function drawerOpen(): void {
@@ -66,6 +73,7 @@
         drawerStore.close();
     };
 
+    // POPUPS
     storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
         
     const popupClick: PopupSettings = {
@@ -73,12 +81,20 @@
         target: 'popupClick',
         placement: 'left',
     };
-
+    
+    // USER
     let currentUser : User | null;
     authStore.subscribe((value) => {
         currentUser = value.user;
     });
+
+    // TOASTS
+    const toastStore = getToastStore();
+
+
 </script>
+
+<Toast />
 
 <Drawer>
     <SideNavbar {drawerClose} />
