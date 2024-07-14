@@ -19,13 +19,13 @@
                 return "rotate-90";
                 break;
             case "SE":
-                return "rotate-135";
+                return "rotate-[135deg]";
                 break;
             case "S":
                 return "rotate-180";
                 break;
             case "SW":
-                return "-rotate-135";
+                return "-rotate-[135deg]";
                 break;
             case "W":
                 return "-rotate-90";
