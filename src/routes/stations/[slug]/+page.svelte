@@ -8,7 +8,8 @@
 	import { fetchWeather } from "$lib/utils/index.js";
 	import { onMount } from "svelte";
 	import { 
-		getFirestore, collection, getDocs
+		getFirestore, collection, getDocs,
+		addDoc, deleteDoc, doc
 	} from "firebase/firestore";
 	import { firebaseConfig } from "$lib/firebase.config.js";
 	
@@ -21,8 +22,8 @@
 	const forecast = data.forecast;
 	const hourly = data.hourly;
 	
-	/*let station: string = ""; 
-	let isPreferred = false;*/
+	let isPreferred : boolean = false;
+	let thisid : string | undefined;
 
 	let weather : string = "";
 	onMount(async () => {
@@ -40,33 +41,32 @@
 	const colRef = collection(db, "preferredStations");
 	getDocs(colRef)
 		.then((snapshot) => {
-			let stations: { id: string; }[] = [];
+			let stations: {
+        	[x: string]: string; id: string; 
+			}[] = [];
 			snapshot.docs.forEach((doc) => {
 				stations.push({ ...doc.data(), id: doc.id });
 			})
 			console.log(stations);
+			if (stations.some((item) => item.name === data.name)) {
+				console.log("Stazione preferita");
+				isPreferred = true;
+				thisid = stations.find((item) => item.name === data.name)?.id;
+			} else {
+				console.log("Stazione non preferita");
+				isPreferred = false;
+			}
 		})
 		.catch(err => {
 			console.log(err.message);
-		})
-
-	/*function togglePreferred() {
-		preferredStations.update((current) => {
-			if (current.includes(station)) {
-				return current.filter((item) => item !== station);
-			} else {
-				return [...current, station];
-			}
 		});
-		isPreferred = !isPreferred;
-	}*/
 
   </script>
 <p class="p-6">
 	<HomeIcon size="1.0x" class="mr-2 inline-block"/> 
 	<a href="/" class="underline underline-offset-2">Home</a>>
 	<a href="/stations" class="underline underline-offset-2">Stazioni</a>>
-	{data.title}
+	{data.name}
 </p>
 
 <div class="lg:w-4/5 mx-auto bg-surface-500 lg:rounded-lg mt-5">
@@ -74,7 +74,7 @@
 	<div class="flex flex-row justify-end">
 		
 		<h1 class="p-5">
-			{data.title}
+			{data.name}
 		</h1>
 		<div class="w-1/2 mx-auto border rounded text-center m-5 inline-block bg-secondary-500">
 			<p>
@@ -92,7 +92,24 @@
 			</p>
 		</div>
 		<div>
-			<StarIcon size="1.5x" class="m-5 mt-7 inline-block hover:fill-warning-400 hover:shadow-xl"/>
+			{#if !isPreferred}
+				<button on:click={async () => {
+				await addDoc(colRef, {
+					group: data.group,
+					name: data.name,
+					title: data.title,
+				});
+				}}>
+					<StarIcon size="1.5x" class="m-5 mt-7 inline-block hover:fill-warning-400 hover:shadow-xl"/>
+				</button>
+			{:else}
+			<button on:click={async () => {
+				const docRef = doc(db, "preferredStations", thisid || "");
+				await deleteDoc(docRef);
+				}}>
+					<StarIcon size="1.5x" class="m-5 mt-7 inline-block fill-warning-400 hover:shadow-xl"/>
+				</button>
+			{/if}
 		</div>
 	</div>
 

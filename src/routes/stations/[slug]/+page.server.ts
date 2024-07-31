@@ -2,11 +2,12 @@ import { stationsConfig } from '$lib/stations-vcw.config.js';
 import { translate_forecast, fetchWeather } from '$lib/utils';
 
 export const load = async (serverLoadEvent) => {
+
     const { fetch, params } = serverLoadEvent;
     const station = await import(`../${params.slug}.md`);
-    const { name, region, country } = station.metadata;
+    const { name, title, region, country, group } = station.metadata;
 
-    const title = `${name}`;
+    //const pageTitle = `${name}`;
 
     const API_KEY = stationsConfig.apiKey;
     const STAT_URL = stationsConfig.statUrl;
@@ -26,7 +27,10 @@ export const load = async (serverLoadEvent) => {
     const hourly = hourlyConditions(stationsJSON);
 
     return {
+        //pageTitle,
+        name,
         title,
+        group,
         current,
         forecast,
         hourly
