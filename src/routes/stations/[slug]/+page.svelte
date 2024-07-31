@@ -7,21 +7,27 @@
 	import SnowDeposit from '$lib/components/chart/SnowDeposit.svelte'; // Add this line
 	import { fetchWeather } from "$lib/utils/index.js";
 	import { onMount } from "svelte";
+	import { 
+		getFirestore, collection, getDocs
+	} from "firebase/firestore";
+	import { firebaseConfig } from "$lib/firebase.config.js";
+	
 	import { preferredStations } from "$lib/store/preferredStations.js";
 	import { get } from "svelte/store";
+
 
 	export let data;
 	const current = data.current;
 	const forecast = data.forecast;
 	const hourly = data.hourly;
 	
-	let station: string = ""; 
-	let isPreferred = false;
+	/*let station: string = ""; 
+	let isPreferred = false;*/
 
 	let weather : string = "";
 	onMount(async () => {
-		station = data.title; // maybe use data.title
-		isPreferred = get(preferredStations).includes(station);
+		/*station = data.title; // maybe use data.title
+		isPreferred = get(preferredStations).includes(station);*/
     	let waiting = await fetchWeather(current.conditions);
 		if (typeof waiting == 'string') {
 			weather = waiting;
@@ -30,7 +36,21 @@
 		}
   	});
 
-	function togglePreferred() {
+	const db = getFirestore();
+	const colRef = collection(db, "preferredStations");
+	getDocs(colRef)
+		.then((snapshot) => {
+			let stations: { id: string; }[] = [];
+			snapshot.docs.forEach((doc) => {
+				stations.push({ ...doc.data(), id: doc.id });
+			})
+			console.log(stations);
+		})
+		.catch(err => {
+			console.log(err.message);
+		})
+
+	/*function togglePreferred() {
 		preferredStations.update((current) => {
 			if (current.includes(station)) {
 				return current.filter((item) => item !== station);
@@ -39,7 +59,7 @@
 			}
 		});
 		isPreferred = !isPreferred;
-	}
+	}*/
 
   </script>
 <p class="p-6">
