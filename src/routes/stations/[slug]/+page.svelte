@@ -8,7 +8,7 @@
 	import { fetchWeather } from "$lib/utils/index.js";
 	import { onMount } from "svelte";
 	import { 
-		getFirestore, collection, getDocs,
+		getFirestore, collection, onSnapshot,
 		addDoc, deleteDoc, doc
 	} from "firebase/firestore";
 	import { firebaseConfig } from "$lib/firebase.config.js";
@@ -39,27 +39,24 @@
 
 	const db = getFirestore();
 	const colRef = collection(db, "preferredStations");
-	getDocs(colRef)
-		.then((snapshot) => {
-			let stations: {
-        	[x: string]: string; id: string; 
-			}[] = [];
-			snapshot.docs.forEach((doc) => {
-				stations.push({ ...doc.data(), id: doc.id });
-			})
-			console.log(stations);
-			if (stations.some((item) => item.name === data.name)) {
-				console.log("Stazione preferita");
-				isPreferred = true;
-				thisid = stations.find((item) => item.name === data.name)?.id;
-			} else {
-				console.log("Stazione non preferita");
-				isPreferred = false;
-			}
+
+	onSnapshot(colRef, (snapshot) => {
+		let stations: {
+			[x: string]: string; id: string; 
+		}[] = [];
+		snapshot.docs.forEach((doc) => {
+			stations.push({ ...doc.data(), id: doc.id });
 		})
-		.catch(err => {
-			console.log(err.message);
-		});
+		console.log(stations);
+		if (stations.some((item) => item.name === data.name)) {
+			console.log("Stazione preferita");
+			isPreferred = true;
+			thisid = stations.find((item) => item.name === data.name)?.id;
+		} else {
+			console.log("Stazione non preferita");
+			isPreferred = false;
+		}
+	});	
 
   </script>
 <p class="p-6">

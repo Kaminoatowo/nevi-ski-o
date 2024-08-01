@@ -27,7 +27,6 @@ export const load = async (serverLoadEvent) => {
     const hourly = hourlyConditions(stationsJSON);
 
     return {
-        //pageTitle,
         name,
         title,
         group,
