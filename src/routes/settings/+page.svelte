@@ -1,6 +1,5 @@
 <script lang="ts">
     import type { User } from 'firebase/auth';
-    import { auth } from '$lib/firebase';
     import { authStore } from '$lib/store/store';
     
     let currentUser : User | null;
@@ -11,6 +10,12 @@
 
 <div class="flex-center">
     <h1 class="p-5">Ciao {currentUser?.displayName?.split(" ")[0]}!</h1>
+
+    <button class="rounded-md bg-warning-500">
+        <a href="/dashboard">
+            Dashboard
+        </a>
+    </button>
     
     <h2 class="p-3">Qui puoi modificare le tue informazioni personali.</h2>
 

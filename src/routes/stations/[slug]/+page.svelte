@@ -11,10 +11,6 @@
 		getFirestore, collection, onSnapshot,
 		addDoc, deleteDoc, doc
 	} from "firebase/firestore";
-	import { firebaseConfig } from "$lib/firebase.config.js";
-	
-	import { preferredStations } from "$lib/store/preferredStations.js";
-	import { get } from "svelte/store";
 
 
 	export let data;

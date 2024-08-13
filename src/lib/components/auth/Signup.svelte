@@ -1,9 +1,19 @@
 <script lang="ts">
     import { authHandlers } from "$lib/store/store";
     import { GoogleIcon } from 'svelte-uicons/brands';
+    import { getFirestore, collection, addDoc } from 'firebase/firestore';
 
     let email = '';
     let password = '';
+
+    const addToDb = async () => {
+        const db = getFirestore();
+        const colRef = collection(db, "users");
+        await addDoc(colRef, {
+            email: email,
+            role: "user"
+        });
+    }
 </script>
 
 <main class="flex flex-col items-center justify-center">
@@ -12,12 +22,18 @@
         <form class="mt-12">
             <input bind:value={email} type="email" placeholder="Email" class="p-4 bg-white text-black rounded-lg w-full" />
             <input bind:value={password} type="password" placeholder="Password" class="p-4 bg-white text-black rounded-lg w-full mt-4" />
-            <button on:click={async () => await authHandlers.signupWithEmailPassword(email, password)} type="submit" class="p-4 bg-white text-black rounded-lg mt-12 font-bold w-full">
+            <button on:click={async () => {
+                await authHandlers.signupWithEmailPassword(email, password);
+                await addToDb();
+            }} type="submit" class="p-4 bg-white text-black rounded-lg mt-12 font-bold w-full">
                 Registrati
             </button>
         </form>
         <div class="flex">
-            <button on:click={authHandlers.loginWithGoogle} class="p-4 bg-white text-black rounded-lg mt-12 font-bold mx-auto">
+            <button on:click={async () => { 
+                await authHandlers.loginWithGoogle;
+                await addToDb();
+                }} class="p-4 bg-white text-black rounded-lg mt-12 font-bold mx-auto">
                 <GoogleIcon size="1.5x" class="mr-2 inline-block" />
                 Registrati con Google
             </button>

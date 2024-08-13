@@ -4,6 +4,7 @@
 
     let email = '';
     let password = '';
+
 </script>
 
 <main class="flex flex-col items-center justify-center">
