@@ -9,9 +9,10 @@
 	import { onMount } from "svelte";
 	import { 
 		getFirestore, collection, onSnapshot,
-		addDoc, deleteDoc, doc
+		updateDoc, doc
 	} from "firebase/firestore";
-
+	import { type User } from 'firebase/auth';
+    import { authStore } from '$lib/store/store';
 
 	export let data;
 	const current = data.current;
@@ -19,7 +20,7 @@
 	const hourly = data.hourly;
 	
 	let isPreferred : boolean = false;
-	let thisid : string | undefined;
+	let thisid : string = '';
 
 	let weather : string = "";
 	onMount(async () => {
@@ -33,21 +34,39 @@
 		}
   	});
 
-	const db = getFirestore();
-	const colRef = collection(db, "preferredStations");
+	let currentUser : User | null;
+    authStore.subscribe((value) => {
+        currentUser = value.user;
+    });
 
-	onSnapshot(colRef, (snapshot) => {
-		let stations: {
-			[x: string]: string; id: string; 
+	const db = getFirestore();
+	const colRefU = collection(db, "users");
+	const colRefS = collection(db, "stations");
+
+	let user : {
+		[x: string]: string; email: string; 
+	}| undefined;
+
+	onSnapshot(colRefS, (snapshot) => {
+		snapshot.docs.forEach((doc) => {
+			if (doc.data().name === data.name) {
+				thisid = doc.id;
+			}
+		})
+	});
+
+	onSnapshot(colRefU, (snapshot) => {
+		let users: {
+			[x: string]: string; email: string; 
 		}[] = [];
 		snapshot.docs.forEach((doc) => {
-			stations.push({ ...doc.data(), id: doc.id });
+			users.push({ ...doc.data(), email: doc.data().email, id: doc.id });
 		})
-		console.log(stations);
-		if (stations.some((item) => item.name === data.name)) {
+		user = users.find((item) => item.email === currentUser?.email);
+		console.log(user);
+		if (user?.preferredStations.includes(thisid)) {
 			console.log("Stazione preferita");
 			isPreferred = true;
-			thisid = stations.find((item) => item.name === data.name)?.id;
 		} else {
 			console.log("Stazione non preferita");
 			isPreferred = false;
@@ -87,19 +106,29 @@
 		<div>
 			{#if !isPreferred}
 				<button on:click={async () => {
-				await addDoc(colRef, {
-					group: data.group,
-					name: data.name,
-					title: data.title,
-				});
+					if (user) {
+						let newPref = "";
+						if ( user.preferredStations.length != 0) {
+							newPref = user.preferredStations + ", " + thisid;
+						}else {
+							newPref = thisid;
+						}
+						await updateDoc(doc(db, "users", user.id), {
+							preferredStations: newPref
+						});
+					}
 				}}>
 					<StarIcon size="1.5x" class="m-5 mt-7 inline-block hover:fill-warning-400 hover:shadow-xl"/>
 				</button>
 			{:else}
 			<button on:click={async () => {
-				const docRef = doc(db, "preferredStations", thisid || "");
-				await deleteDoc(docRef);
-				}}>
+				if (user) {
+					let newPref = user.preferredStations.split(", ").filter((item) => item !== thisid).join(", ");
+					await updateDoc(doc(db, "users", user.id), {
+						preferredStations: newPref
+					});
+				}
+			}}>
 					<StarIcon size="1.5x" class="m-5 mt-7 inline-block fill-warning-400 hover:shadow-xl"/>
 				</button>
 			{/if}
