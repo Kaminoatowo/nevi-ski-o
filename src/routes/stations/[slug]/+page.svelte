@@ -63,12 +63,9 @@
 			users.push({ ...doc.data(), email: doc.data().email, id: doc.id });
 		})
 		user = users.find((item) => item.email === currentUser?.email);
-		console.log(user);
 		if (user?.preferredStations.includes(thisid)) {
-			console.log("Stazione preferita");
 			isPreferred = true;
 		} else {
-			console.log("Stazione non preferita");
 			isPreferred = false;
 		}
 	});	
