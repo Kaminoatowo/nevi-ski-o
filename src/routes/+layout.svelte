@@ -31,6 +31,7 @@
     import { onMount } from 'svelte';
     import { auth } from '$lib/firebase';
     import img from '$lib/assets/Logo_neviskio.png';
+    import { inject } from '@vercel/analytics';
 
     onMount(() => {
         const unsubscribe = auth.onAuthStateChanged( async (user) => {
