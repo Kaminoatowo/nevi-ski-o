@@ -3,16 +3,15 @@
     import { 
         AppShell, 
         AppBar, 
-        AppRail, 
-        AppRailAnchor, 
-        AppRailTile,
         Drawer, 
         getDrawerStore,
         type DrawerSettings, 
-        type DrawerStore,
         initializeStores,
         type PopupSettings,
-        popup
+        popup,
+        Toast, getToastStore,
+        type ToastSettings, 
+        type ToastStore
     } from '@skeletonlabs/skeleton';
     //import { LightSwitch } from '@skeletonlabs/skeleton';
     import {    
@@ -21,7 +20,6 @@
      } from 'svelte-uicons/rounded/regular';
     import type { AfterNavigate } from '@sveltejs/kit';
     import { afterNavigate } from '$app/navigation';
-    import { page } from '$app/stores';
     import SideNavbar from '$lib/components/SideNavbar.svelte';
     import { 
         computePosition, autoUpdate, offset, 
@@ -29,10 +27,11 @@
     } from '@floating-ui/dom';
     import { storePopup } from '@skeletonlabs/skeleton';
     import type { User } from 'firebase/auth';
-    import { authStore, authHandlers } from '../store/store';
+    import { authStore } from '$lib/store/store';
     import { onMount } from 'svelte';
     import { auth } from '$lib/firebase';
     import img from '$lib/assets/Logo_neviskio.png';
+    import { inject } from '@vercel/analytics';
 
     onMount(() => {
         const unsubscribe = auth.onAuthStateChanged( async (user) => {
@@ -44,6 +43,11 @@
                 authStore.update(() => {
                     return { user: user };
                 });
+                const t: ToastSettings = {
+                    message: 'Benvenuto '+ user.displayName +'!',
+                    timeout: 5000,
+                };
+                toastStore.trigger(t);
             }
         });
         return unsubscribe;
@@ -58,10 +62,9 @@
         }
     });
 
-    // to manage the current tile
-    let currentTile: number = 0;
-
     initializeStores();
+
+    // DRAWERS
     const drawerStore = getDrawerStore();
     const settings: DrawerSettings = { width: 'w-[280px] md:w-[480px]' };
     function drawerOpen(): void {
@@ -71,6 +74,7 @@
         drawerStore.close();
     };
 
+    // POPUPS
     storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
         
     const popupClick: PopupSettings = {
@@ -78,12 +82,20 @@
         target: 'popupClick',
         placement: 'left',
     };
-                      
+    
+    // USER
     let currentUser : User | null;
     authStore.subscribe((value) => {
         currentUser = value.user;
     });
+
+    // TOASTS
+    const toastStore = getToastStore();
+
+
 </script>
+
+<Toast />
 
 <Drawer>
     <SideNavbar {drawerClose} />
@@ -126,13 +138,10 @@
                         <p>Registrati</p>
                     </a>
                     {/if}
-                </div>           
+                </div>                   
             </svelte:fragment>
         </AppBar>
 	</svelte:fragment>
-    {#if currentUser}
-    Current user: {currentUser?.displayName}
-    {/if}
     <slot />
     <svelte:fragment slot="pageFooter">
         <section class="m-5 flex flex-col items-center">

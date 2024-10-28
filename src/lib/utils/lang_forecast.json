@@ -1,0 +1,24 @@
+{
+    "it_IT": {
+        "rain": "pioggia",
+        "rain_overcast": "pioggia, coperto",
+        "partially_cloudy": "parzialmente nuvoloso",
+        "clear": "sereno",
+        "snow": "neve",
+        "mist": "nebbia",
+        "fog": "foschia",
+        "thunderstorm": "temporale",
+        "hail": "grandine",
+        "sleet": "nevischio",
+        "wind": "vento",
+        "tornado": "tornado",
+        "hurricane": "uragano",
+        "tropical_storm": "tempesta tropicale",
+        "cold": "freddo",
+        "hot": "caldo",
+        "calm": "calmo",
+        "breeze": "brezza",
+        "gale": "bufera",
+        "storm": "tempesta"
+    }
+}
